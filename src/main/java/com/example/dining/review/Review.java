@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-enum Status {UNSUBMIITED, PENDING, APPROVED}
+enum Status {UNSUBMIITED, PENDING, APPROVED, REJECTED}
 
 @Entity
 @Table(name="REVIEW")
@@ -26,7 +26,7 @@ public class Review {
 
     @Column(name="RES_ID", nullable=false)
     @Getter @Setter
-    private Long restaurantId;
+    private Long restId;
 
     @Column(name="PEANUT", columnDefinition = "int check(PEANUT > 0 and PEANUT <= 5)")
     @Getter @Setter
@@ -49,4 +49,15 @@ public class Review {
     private Status status = Status.UNSUBMIITED;
 
     public Review() {}
+
+    public Review(String name, Long restId, Integer peanutScore,
+            Integer eggScore, Integer diaryScore, String commentary) {
+        this.name = name;
+        this.restId = restId;
+        this.peanutScore = peanutScore;
+        this.eggScore = eggScore;
+        this.diaryScore = diaryScore;
+        this.commentary = commentary;
+        this.status = Status.PENDING;
+    }
 }

@@ -21,11 +21,11 @@ public class User {
     @Getter @Setter
     private String name;
 
-    @Column(name="CITY", nullable=false, length=50)
+    @Column(name="CITY", nullable=false, length=20)
     @Getter @Setter
     private String city;
 
-    @Column(name="STATE", nullable=false, length=50)
+    @Column(name="STATE", nullable=false, length=20)
     @Getter @Setter
     private String state;
 
