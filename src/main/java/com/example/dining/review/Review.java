@@ -5,59 +5,51 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 
-enum Status {UNSUBMIITED, PENDING, APPROVED, REJECTED}
-
 @Entity
 @Table(name="REVIEW")
+@Setter @Getter
 public class Review {
-    @Id @GeneratedValue
-    @Setter @Getter
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @Column(name="NAME", nullable=false)
-    @Getter @Setter
     private String name;
 
     @Column(name="RES_ID", nullable=false)
-    @Getter @Setter
     private Long restId;
 
     @Column(name="PEANUT", columnDefinition = "int check(PEANUT > 0 and PEANUT <= 5)")
-    @Getter @Setter
     private Integer peanutScore;
 
     @Column(name="EGG", columnDefinition = "int check(EGG > 0 and EGG <= 5)")
-    @Getter @Setter
     private Integer eggScore;
 
     @Column(name="DIARY", columnDefinition = "int check(DIARY > 0 and DIARY <= 5)")
-    @Getter @Setter
     private Integer diaryScore;
 
     @Column(name="CMT", length=1000)
-    @Getter @Setter
     private String commentary;
 
     @Column(name="STATUS", nullable=false)
     @Enumerated(EnumType.STRING)
-    private Status status = Status.UNSUBMIITED;
+    private ReviewStatus status = ReviewStatus.UNSUBMITED;
 
     public Review() {}
 
-    public Review(String name, Long restId, Integer peanutScore,
+    public Review(Long restId, Integer peanutScore,
             Integer eggScore, Integer diaryScore, String commentary) {
-        this.name = name;
         this.restId = restId;
         this.peanutScore = peanutScore;
         this.eggScore = eggScore;
         this.diaryScore = diaryScore;
         this.commentary = commentary;
-        this.status = Status.PENDING;
+        this.status = ReviewStatus.PENDING;
     }
 }

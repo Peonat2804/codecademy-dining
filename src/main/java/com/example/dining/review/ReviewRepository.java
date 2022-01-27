@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ReviewRepository extends CrudRepository<Review, Long> {
     Optional<Review> findByName(String name);
-    Optional<Review> findById(String name);
-    List<Review> findByStatus(Status status);
-    Optional<Review> findByRestIdAndStatus(Long restId, Status status);
+    Optional<Review> findById(Long id);
+    List<Review> findByStatus(ReviewStatus status);
+    List<Review> findByRestIdAndStatus(Long restId, ReviewStatus status);
 }

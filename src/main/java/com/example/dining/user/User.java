@@ -2,7 +2,6 @@ package com.example.dining.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,38 +10,31 @@ import lombok.Setter;
 
 @Entity
 @Table(name="USER")
+@Getter @Setter
 public class User {
-    @GeneratedValue
-    @Getter @Setter
+    @Column(name="ID", columnDefinition="bigint auto_increment")
     private Long id;
 
     @Id
     @Column(name="NAME", nullable=false, length=100)
-    @Getter @Setter
     private String name;
 
-    @Column(name="CITY", nullable=false, length=20)
-    @Getter @Setter
+    @Column(name="CITY", length=20)
     private String city;
 
-    @Column(name="STATE", nullable=false, length=20)
-    @Getter @Setter
+    @Column(name="STATE", length=20)
     private String state;
 
-    @Column(name="ZIP", nullable=false, length=20)
-    @Getter @Setter
+    @Column(name="ZIP", length=20)
     private String zip;
 
     @Column(name="PEANUT_ALLERGY")
-    @Getter @Setter
     private Boolean peanutAllergy;
 
     @Column(name="EGG_ALLERGY")
-    @Getter @Setter
     private Boolean eggAllergy;
 
     @Column(name="DIARY_ALLERGY")
-    @Getter @Setter
     private Boolean diaryAllergy;
 
     public User() {}
